@@ -61,6 +61,14 @@ const TodoTemplate = () => {
         setTodos([...todos, newTodo])
     };
 
+    // 할 일 삭제 처리 함수
+    const removeTodo = id => {
+        // console.log(`삭제대상 id: ${id}`);
+
+        setTodos(todos.filter(todo => todo.id !== id));
+        // 삭제할 id와 다른것을 필터링해라
+    };
+
     useEffect(() => {
         console.log(todos);
     }, [todos]);
@@ -68,7 +76,7 @@ const TodoTemplate = () => {
   return (
     <div className='TodoTemplate'>
         <TodoHeader />
-        <TodoMain todoList={todos} />
+        <TodoMain todoList={todos} remove={removeTodo} />
         <TodoInput addTodo={addTodo} />
     </div> // props 로 보내주기
   )
